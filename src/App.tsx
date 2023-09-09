@@ -1,12 +1,25 @@
 import { Gen } from './Gen';
 
-function App() {
+export default function App() {
   return (
     <>
-      <h1 className="text-white text-xl text-center">Password Generator</h1>
-      <Gen />
+      <div className="flex h-screen text-center justify-between flex-col">
+        <div className="">
+          <h1 className="text-white text-xl text-center">Password Generator</h1>
+          <Gen />
+        </div>
+        <div className=" ">
+          <Footer />
+        </div>
+      </div>
     </>
   );
 }
 
-export default App;
+const Footer = () => {
+  return (
+    <footer className="">
+      <span className=" text-white">No Copy right &#128525;</span>
+    </footer>
+  );
+};
