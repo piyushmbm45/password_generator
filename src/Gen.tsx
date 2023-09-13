@@ -128,18 +128,20 @@ export function Gen() {
             ></input>
             Upper case
           </label>
-          <label htmlFor="input">
-            <input
-              className=" mr-1"
-              type="checkbox"
-              name="is Begin with Alphabet"
-              id="char"
-              checked={check.isStartAlpha}
-              aria-label="characters"
-              onChange={(e) => handleCheckbox(e, 'isStartAlpha')}
-            ></input>
-            Start with alphabet
-          </label>
+          {(check.isLower || check.isUpper) && (
+            <label htmlFor="input">
+              <input
+                className=" mr-1"
+                type="checkbox"
+                name="is Begin with Alphabet"
+                id="char"
+                checked={check.isStartAlpha}
+                aria-label="characters"
+                onChange={(e) => handleCheckbox(e, 'isStartAlpha')}
+              ></input>
+              Start with alphabet
+            </label>
+          )}
         </div>
       </div>
     </div>
@@ -160,11 +162,15 @@ function generateRandString(
   const capitalLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
   let charSet = '';
+  let alphaSet = '';
 
   if (isNum) charSet += nums;
   if (isChar) charSet += symbols;
   if (isLower) charSet += smallLetters;
   if (isUpper) charSet += capitalLetters;
+
+  if (isLower) alphaSet += smallLetters;
+  if (isUpper) alphaSet += capitalLetters;
 
   if (!charSet) {
     return { str: '', strength: 'Weak' };
@@ -172,9 +178,14 @@ function generateRandString(
 
   let str = '';
   const charSetLength = charSet.length;
+  const alphabetLength = alphaSet.length;
 
   for (let i = 0; i < length; i++) {
-    str += charSet[Math.floor(Math.random() * charSetLength)];
+    if (i === 0 && isStartAlpha) {
+      str += alphaSet[Math.floor(Math.random() * alphabetLength)];
+    } else {
+      str += charSet[Math.floor(Math.random() * charSetLength)];
+    }
   }
 
   // Strength of password
