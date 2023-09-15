@@ -1,4 +1,5 @@
 import { Gen } from './Gen';
+import { Quote } from './Quote';
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
           <h1 className="text-white text-xl text-center">Password Generator</h1>
           <Gen />
         </div>
+        <Quote />
         <div className=" ">
           <Footer />
         </div>

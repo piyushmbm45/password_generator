@@ -45,9 +45,9 @@ export function Gen() {
   };
 
   return (
-    <div className=" flex justify-center">
+    <div className=" flex justify-center shadow-sm">
       <div className="rounded-md bg-red-300 text-center m-1 p-1 w-1/2 h-auto">
-        <div className=" m-1 flex justify-center mb-2">
+        <div className=" m-1 flex justify-center mb-2 shadow-md">
           <input
             type="text"
             className="rounded-l-md p-3 w-1/2 md:w-11/12"
@@ -55,7 +55,19 @@ export function Gen() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></input>
-          <span className=" bg-white p-3">{strength}</span>
+          <span
+            className=" bg-white p-3"
+            style={{
+              color:
+                strength === 'Weak'
+                  ? 'red'
+                  : strength === 'Moderate'
+                  ? 'orange'
+                  : 'green',
+            }}
+          >
+            {strength}
+          </span>
           <button
             className="bg-indigo-600 p-3 w-1/2 md:w-1/12"
             onClick={onClickCopy}
